@@ -29,6 +29,16 @@
   --global-fontSize: 14;
 }
 
+@media (pefers-color-scheme: dark) {
+  :root {
+    --global-textColor: var(--color-neutral-100);
+    --global-textColor-muted: var(--color-neutral-300);
+    --global-textColor-meta: var(--color-neutral-500);
+    --global-backgroundColor: var(--color-neutral-900);
+    --global-foregroundColor: var(--color-neutral-800);
+  }
+}
+
 /* reset */
 
 * {
@@ -48,6 +58,9 @@ svg {
 
 html {
   font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  color: var(--global-textColor);
+  background-color: var(--global-backgroundColor);
   font-size: calc((var(--global-fontSize) / 16) * 100%);
 }
 
@@ -108,16 +121,42 @@ h2 {
 /* only add margin top if elements are adjacent */
 
 .flow > * + * {
-  margin-top: 1.5rem;
+  margin-top: calc(1.5rem * (16 / var(--global-fontSize)));
 }
 
 /* app stuff */
+.app {
+  background-color: var(--global-foregroundColor);
+  border-radius: calc(1rem * (16 / var(--global-fontSize)));
+  padding: calc(1rem * (16 / var(--global-fontSize)));
+  max-width: calc(25rem * (16 / var(--global-fontSize)));
+}
 
 /* the paths */
 
 /* the legend and controls */
+.app__controls {
+  display: flex;
+  gap: calc(1rem * (16 / var(--global-fontSize)));
+  flex-wrap: wrap;
+}
+
+.app__controls__radio {
+  display: none;
+}
+
+.app__controls__radio:checked + .app__controls__label {
+  color: var(--global-uiColor);
+}
 
 /* theme toggle */
+.theme-toggle {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 50px;
+  height: 50px;
+}
 
 /*
     utility classes
